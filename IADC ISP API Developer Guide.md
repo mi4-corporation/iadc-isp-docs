@@ -16,12 +16,12 @@ Use the links below to get started using the API.
 
 ## Table of Contents
 * [Introduction](#iadc-isp-public-api)
-* [Quick Start]
-* [Overview]
-* [Authentication]
-* [JSON Data Object Structure]
-* [Lookup Values]
-* [Endpoints]
+* [Quick Start](#quick-start)
+* [Overview](#overview)
+* [Authentication](#authentication)
+* [JSON Data Object Structure](#json-data-object-structure)
+* [Lookup Values](#lookup-values)
+* [Endpoints](#endpoints)
 
 ## Quick Start
 In this section, we will cover all the basics you need to get started using the IADC ISP public API.
@@ -60,7 +60,7 @@ use the [API Overview](#overview) to link you to the correct section. Once there
     * May include route or query paramters, explained below.
 2. Route and Query Parameters
     * These parameters are required for some endpoints but not needed for others. 
-    * More information about accepted parameter values can be found at [Lookup Values]
+    * More information about accepted parameter values can be found at [Lookup Values](#lookup-values)
     or by using the [Lookups Endpoints](#lookups).
 3. Body
     * Some endpoints require a body, some do not accept requests with a body, and some have an optional body.
@@ -68,7 +68,7 @@ use the [API Overview](#overview) to link you to the correct section. Once there
 4. Headers
     * All endpoints require the request to have an authentication header, usually the X-Api-Key header.
         * This header's value should be the API key from the first portion of this quick start guide.
-        * If you are unable to set custom HTTP headers, read [Using an API Key] for other options. 
+        * If you are unable to set custom HTTP headers, read [Using an API Key](#using-an-api-key) for other options. 
         * For more information about API keys, visit the [Authentication](#authentication) portion of this
         documentation.
     * Check that your endpoint does not require any other headers.
@@ -202,11 +202,11 @@ Returns all possible valid country values.-->
 
 Where to go from here:
 
-* For help getting started sending HTTP requests, read the [Quick Start] section.
+* For help getting started sending HTTP requests, read the [Quick Start](#quick-start) section.
 
-* For an overview of API keys and authentication, visit the [Authentication] portion of this documentation.
+* For an overview of API keys and authentication, visit the [Authentication](#authentication) portion of this documentation.
 
-* For information on how to interpret JSON response bodies, read [JSON Data Object Structure].
+* For information on how to interpret JSON response bodies, read [JSON Data Object Structure](#json-data-object-structure).
 
 * [Return to Table of Contents](#table-of-contents)
 ---
@@ -322,7 +322,7 @@ Where to go from here:
 
 * For a list of all endpoints, visit the [Overview](#overview) portion of this documentation.
 
-* For help getting started sending HTTP requests, read the [Quick Start] section.
+* For help getting started sending HTTP requests, read the [Quick Start](#quick-start) section.
 
 * [Return to Table of Contents](#table-of-contents)
 ---
@@ -348,7 +348,7 @@ documentation on different object types for help understnading your response.
 Below is an outline of the overall structure of monthly reports in the API. Click on each item in the
 structure to find more information about the JSON structure of that object.
 
-* [Monthly Report]  
+* [Monthly Report](#monthly-report)  
     * Operation Categories    
         * [Operation Category 1](#operation-category)    
         * [Operation Category 2](#operation-category)     
@@ -374,29 +374,6 @@ structure to find more information about the JSON structure of that object.
 &emsp;[Return to Table of Contents](#table-of-contents)   
 
 ---
-<!--
-[Monthly Report]  
-&emsp;[Operation Categories]    
-&emsp;&emsp;[Operation Category 1](#operation-category)    
-&emsp;&emsp;[Operation Category 2](#operation-category)     
-&emsp;&emsp;[...]   
-&emsp;&emsp;[Operation Category N](#operation-category)     
-&emsp;&emsp;&emsp;[Incident Types]   
-&emsp;&emsp;&emsp;&emsp;[Incident Statistic Type 1]   
-&emsp;&emsp;&emsp;&emsp;[Incident Statistic Type 2]   
-&emsp;&emsp;&emsp;&emsp;[...]   
-&emsp;&emsp;&emsp;&emsp;[Incident Statistic Type N]  
-&emsp;&emsp;&emsp;&emsp;&emsp;[Supplemental Incident Reports]  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Supplemental Incident Report 1]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Supplemental Incident Report 2]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[...]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Supplemental Incident Report N]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Answers]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Answer 1]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Answer 2]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[...]   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Answer N] 
--->
 
 ### Monthly Report
 The monthly report object consists of many fields that record all of the information pertaining to
@@ -416,7 +393,7 @@ any monthly report. This includes the company, the date, operation categories, a
 * lastUpdateBy ID, Name, and UTC - Information about the last update of the report.
     * Who updated it
     * When was it updated
-* operationCategories - An array of [Operation Category] objects. Each object represents one
+* operationCategories - An array of [Operation Category](#operation-category) objects. Each object represents one
 operation category for this monthly report.
 
 **JSON:**    
@@ -435,7 +412,7 @@ operation category for this monthly report.
 &emsp;&emsp;&emsp;"lastUpdateByName": null,    
 &emsp;&emsp;&emsp;"lastUpdateTimeUTC": null,   
 &emsp;&emsp;&emsp;"operationCategories": [    
-&emsp;&emsp;&emsp;&emsp;&emsp;array of [Operation Category] objects    
+&emsp;&emsp;&emsp;&emsp;&emsp;array of [Operation Category](#operation-category) objects    
 &emsp;&emsp;&emsp;]   
 &emsp;&emsp;}   
 
@@ -451,9 +428,9 @@ The operation categories record the number of hours worked for each category as 
 
 **Fields/Attributes:**
 * operationCategoryID & operationCategory - Represent the operation category type. Read more about how the operation
-categories are represented at [Operation Categories].
+categories are represented at [Operation Categories](#operation-categories).
 * hoursWorked - integer value representing the number of hours worked for that operation category.
-* incidentTypes - An array of [Incident Statistic Type] objects, each with some number of SIRs. 
+* incidentTypes - An array of [Incident Statistic Type](#incident-statistic-type) objects, each with some number of SIRs. 
     * The SIRs for each operation category are sorted by statistic type. 
     * This array represents the sorted SIRs. 
     * Each object in the array is a single category or statistic type of incident.
@@ -464,7 +441,7 @@ categories are represented at [Operation Categories].
 &emsp;&emsp;&emsp;"operationCategory": "US - Land",                         
 &emsp;&emsp;&emsp;"hoursWorked": 0,                                         
 &emsp;&emsp;&emsp;"incidentTypes": [                                        
-&emsp;&emsp;&emsp;&emsp;&emsp;array of [Incident Statistic Type] objects    
+&emsp;&emsp;&emsp;&emsp;&emsp;array of [Incident Statistic Type](#incident-statistic-type) objects    
 &emsp;&emsp;&emsp;]                                                         
 &emsp;&emsp;}   
 
@@ -482,7 +459,7 @@ type.
 
 **Fields/Attributes:**
 * incidentStatistic TypeID, Type, and Abbreviation - Representation of the statistic type of the 
-incident. Read more about how the types are represented at [Incident Statistic Types].   
+incident. Read more about how the types are represented at [Incident Statistic Types](#incident-statistic-types).   
 * quantity - The number of incidents reported of this statistic type for this operation category and 
 month.
 * supplementalIncidentReports - An array of [Supplemental Incident Report (SIR)](#supplemental-incident-report) 
@@ -495,7 +472,7 @@ objects. Each item in the array is one SIR that has been created.
 &emsp;&emsp;&emsp;"incidentStatisticAbbreviation": "MTO",                         
 &emsp;&emsp;&emsp;"quantity": 5,                                                  
 &emsp;&emsp;&emsp;"supplementalIncidentReports": [                                
-&emsp;&emsp;&emsp;&emsp;&emsp;array of [Supplemental Incident Report] objects     
+&emsp;&emsp;&emsp;&emsp;&emsp;array of [Supplemental Incident Report](#supplemental-incident-report) objects     
 &emsp;&emsp;&emsp;]                                                               
 &emsp;&emsp;}   
 
@@ -514,9 +491,9 @@ and the answers to [Incident Questions](#incident-questions-and-answers).
 **Fields/Attributes:**
 * sirid - ID of the SIR.
 * operationCategoryID - ID of the operation category type. Read more about how the operation
-categories are represented at [Operation Categories].
+categories are represented at [Operation Categories](#operation-categories).
 * incidentStatisticTypeID - ID of the statistic type of the incident. Read more about how the types are 
-represented at [Incident Statistic Types].  
+represented at [Incident Statistic Types](#incident-statistic-types).  
 * incidentDayNotReported - Boolean value representing whether the day the incident occured was reported
 or not.
     * true - incident day was **NOT** reported
@@ -527,7 +504,7 @@ or not.
 * isSIF - Boolean representation of if the incident is a serious injury or fatality(SIF) or not.
 * sifComments - Optional comments about the SIF status.
 * rigNameNumber - Optional string representation of the rigNameNumber.
-* answers - An array of [Answer] objects. Each object in the array represents an answer to one of 
+* answers - An array of [Answer](#answer) objects. Each object in the array represents an answer to one of 
 the SIR [Incident Questions](#incident-questions-and-answers). This array may have no answers, a subset of the 
 required answers, or all of the required answers.
 
@@ -542,7 +519,7 @@ required answers, or all of the required answers.
 &emsp;&emsp;&emsp;"sifComments": "Optional comment about SIF status",      
 &emsp;&emsp;&emsp;"rigNameNumber": "Optional rigNameNumber string",        
 &emsp;&emsp;&emsp;"answers": [                                             
-&emsp;&emsp;&emsp;&emsp;&emsp;array of [Answer] objects                    
+&emsp;&emsp;&emsp;&emsp;&emsp;array of [Answer](#answer) objects                    
 &emsp;&emsp;&emsp;]                                                        
 &emsp;&emsp;} 
 
@@ -621,9 +598,9 @@ and an abbreviation.
 
 Where to go from here:
 
-* For help getting started sending HTTP requests, read the [Quick Start] section.
+* For help getting started sending HTTP requests, read the [Quick Start](#quick-start) section.
 
-* For an overview of API keys and authentication, visit the [Authentication] portion of this documentation.
+* For an overview of API keys and authentication, visit the [Authentication](#authentication) portion of this documentation.
 
 * For a list of all endpoints, visit the [Overview](#overview) portion of this documentation.
 
@@ -714,7 +691,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 **Responses**
 * 200: Ok
     * Body: JSON array of monthly reports
-        * Read [Monthly Report] for more information about JSON formatted monthly reports.
+        * Read [Monthly Report](#monthly-report) for more information about JSON formatted monthly reports.
         * For an example response body, visit the Swagger documentation.
 
 * 400: Bad Request - Missing/invalid values
@@ -756,7 +733,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 **Responses**
 * 200: Ok
     * Body: JSON monthly report.
-        * Read [Monthly Report] for more information about JSON formatted monthly reports.
+        * Read [Monthly Report](#monthly-report) for more information about JSON formatted monthly reports.
         * For an example response body, visit the Swagger documentation.
 
 * 400: Bad Request - Missing/invalid values
@@ -1030,7 +1007,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 * *companyID* - ID value of the company that the requested SIR belongs to
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
 * *sirID* - ID of the SIR you wish to retrieve
-    * Can be found using the [Get All Monthly Reports] endpoint
+    * Can be found using the [Get All Monthly Reports](#get-all-monthly-reports) endpoint
 
 **Query Parameters** - None
 
@@ -1046,7 +1023,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 **Responses**   
 * 200: Ok
     * Body: JSON formatted SIR
-        * Read [Supplemental Incident Report] for more information about JSON formatted SIRs.
+        * Read [Supplemental Incident Report](#supplemental-incident-report) for more information about JSON formatted SIRs.
         * For an example response body, visit the Swagger documentation.
 
 * 400: Bad Request - Missing/invalid values
@@ -1085,7 +1062,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
     * Can be found using the [Get Operation Categories](#get-operation-categories) endpoint or in the 
     [Operation Categories](#operation-categories) portion of this documentation
 * *incidentStatisticTypeID* - ID of the incident statistic type of the SIR
-    * Can be found using the [Get Incident Statistic Types] endpoint 
+    * Can be found using the [Get Incident Statistic Types](#get-incident-statistic-types) endpoint 
     * Read more in the [Incident Statistic Types](#incident-statistic-types) portion of this documentation
 
 **Query Parameters** - None
@@ -1099,7 +1076,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
     * When submitting SIR information in the body of the request, only include attributes for the values you would 
     like to update.
 * Formatting for JSON object
-    * Read [Supplemental Incident Report] for an overview of all fields/attributes for a JSON formatted SIR.
+    * Read [Supplemental Incident Report](#supplemental-incident-report) for an overview of all fields/attributes for a JSON formatted SIR.
     * Only some SIR attributes can be updated by including them in the body of a request.
     * List of possible attributes to include:
         * incidentDate - optional, the date that the incident occurred, must be the same month and year provided in
@@ -1147,7 +1124,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Responses**  
 * 201: Ok
     * Body: JSON formatted SIR
-        * Read [Supplemental Incident Report] for more information about JSON formatted SIRs.
+        * Read [Supplemental Incident Report](#supplemental-incident-report) for more information about JSON formatted SIRs.
         * For an example response body, visit the Swagger documentation.
 
 * 400: Bad Request - Missing/invalid values
@@ -1189,7 +1166,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
     * When submitting SIR information in the body of the request, only include attributes for the values you would 
     like to update.
 * Formatting for JSON object
-    * Read [Supplemental Incident Report] for an overview of all fields/attributes for a JSON formatted SIR.
+    * Read [Supplemental Incident Report](#supplemental-incident-report) for an overview of all fields/attributes for a JSON formatted SIR.
     * Only some SIR attributes can be updated by including them in the body of a request.
     * List of possible attributes to include:
         * incidentDate - optional, the date that the incident occurred, must be the same month and year provided in
@@ -1236,7 +1213,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Responses**  
 * 201: Ok
     * Body: JSON formatted SIR
-        * Read [Supplemental Incident Report] for more information about JSON formatted SIRs.
+        * Read [Supplemental Incident Report](#supplemental-incident-report) for more information about JSON formatted SIRs.
         * For an example response body, visit the Swagger documentation.
 
 * 400: Bad Request - Missing/invalid values
@@ -1473,73 +1450,3 @@ Returns all valid incident statistic type values.
 &emsp;[Return to Overview of Endpoints](#overview)
 
 ---
-<!--
-#### Get Countries
-Returns all possible valid country values. 
-
-**Method and Path** - GET /Report/Countries
-
-**Route Parameters**  - None
-
-**Query Parameters** - None
-
-**Body** - None
-
-**Headers**   
-* **X-Api-Key**    
-    * Include **X-Api-Key** header with your API key as the value.  
-    * This header is used to authenticate and authorize your request.
-    * For information on generating, retrieving, and using an API key, read the [Authentication](#authentication)
-    portion of this documentation.
-
-**Responses**   
-* 200: Ok
-    * Body: List of possible country options, each with a countryID and countryName
-    * Example response body:
-
-* 400: Bad Request - Failed to retrieve country options
-
-* 401: Unauthorized - Missing/invalid API key
-    * API key is missing, not a valid value, or associated with an account that does not have access to any
-    active companies.
--->
-
-    
-<!--
- Example response body:
- &emsp;{                                                                
- &emsp;&emsp;"sirid": 61130,                                            
- &emsp;&emsp;"sirStatusID": null,                                       
- &emsp;&emsp;"operationCategoryID": 1,                                  
- &emsp;&emsp;"incidentStatisticTypeID": 2,                              
- &emsp;&emsp;"incidentDate": "2023-08-15T00:00:00",                     
- &emsp;&emsp;"incidentDayOfMonth": 15,                                  
- &emsp;&emsp;"incidentDayNotReported": false,                           
- &emsp;&emsp;"isSIF": null,                                             
- &emsp;&emsp;"rigNameNumber": "rigNameNumber string",                   
- &emsp;&emsp;"comments": "comment string",                              
- &emsp;&emsp;"answers": [                                               
- &emsp;&emsp;&emsp;{                                                    
- &emsp;&emsp;&emsp;&emsp;"incidentAnswerID": 509366,                    
- &emsp;&emsp;&emsp;&emsp;"questionID": 2,                               
- &emsp;&emsp;&emsp;&emsp;"optionID": 10,                                
- &emsp;&emsp;&emsp;&emsp;"optionText": "Floorman",                      
- &emsp;&emsp;&emsp;&emsp;"optionOrder": 2                               
- &emsp;&emsp;&emsp;},                                                   
- &emsp;&emsp;&emsp;{                                                    
- &emsp;&emsp;&emsp;&emsp;"incidentAnswerID": 509367,                    
- &emsp;&emsp;&emsp;&emsp;"questionID": 5,                               
- &emsp;&emsp;&emsp;&emsp;"optionID": 69,                                
- &emsp;&emsp;&emsp;&emsp;"optionText": "Tongs",                         
- &emsp;&emsp;&emsp;&emsp;"optionOrder": 1                               
- &emsp;&emsp;&emsp;},                                                   
- &emsp;&emsp;&emsp;{                                                    
- &emsp;&emsp;&emsp;&emsp;"incidentAnswerID": 509368,                    
- &emsp;&emsp;&emsp;&emsp;"questionID": 6,                               
- &emsp;&emsp;&emsp;&emsp;"optionID": 102,                               
- &emsp;&emsp;&emsp;&emsp;"optionText": "Material Handling Manual",      
- &emsp;&emsp;&emsp;&emsp;"optionOrder": 6                               
- &emsp;&emsp;&emsp;}                                                    
- &emsp;&emsp;]                                                          
- &emsp;}                                                                
--->
