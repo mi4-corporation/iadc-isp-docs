@@ -1,7 +1,10 @@
 ﻿# IADC ISP Public API
 Welcome to the IADC Incident Statistics Program (ISP) public API documentation. The IADC ISP public API can
 be used to perform many of the functions possible through the web portal. This API can be used to create
-new monthly reports, update the hours worked per operation category, add new SIRs, and more.  
+new monthly reports, update the hours worked per operation category, add new SIRs, and more. 
+
+The base of the URL for this API is **https://isp.iadc.org/publicapi**. The URI for any HTTP request sent to the API should be 
+this address followed by the path for a specific endpoint.
 
 Use the links below to get started using the API.
 * For an introduction to using the API and the documentation, view the [Quick Start](#quick-start) portion 
@@ -58,6 +61,9 @@ use the [API Overview](#overview) to link you to the correct section. Once there
 1. Request Method and Path
     * Always required.
     * May include route or query paramters, explained below.
+    * The root URI for the API is **isp.iadc.org/publicapi**
+        * The URI you should use in your request is the root URI followed by the path specified for the endpoint
+        you wish to hit.
 2. Route and Query Parameters
     * These parameters are required for some endpoints but not needed for others. 
     * More information about accepted parameter values can be found at [Lookup Values](#lookup-values)
@@ -88,6 +94,7 @@ values.
 1. Request Method and Path
     * GET
     * /Companies
+    * URI: **isp.iadc.org/publicapi/Companies**
 2. Route and Query Parameters
     * No parameters
 3. Body
@@ -99,7 +106,7 @@ values.
 
 Using these values, we construct our HTTP request:
 
-> GET&emsp;&emsp;/Companies   
+> GET&emsp;&emsp;isp.iadc.org/publicapi/Companies   
 > X-Api-Key: "isp_TUbabklXnNS8-h7bIs12SxnYd5K9mnLZae"
 
 
@@ -614,6 +621,8 @@ Returns all companies that the API key owner is allowed to access, along with th
 
 **Method and Path** - GET /Companies
 
+**URL** - https://isp.iadc.org/publicapi/Companies
+
 **Route Parameters** - None
 
 **Query Parameters** - None
@@ -673,6 +682,8 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 
 **Method and Path** - GET /Company/*companyID*/Report
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report
+
 **Route Parameters**   
 * *companyID* - ID value of the company you want to retrieve monthly reports for
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -712,6 +723,8 @@ Returns a single monthly report according to the reportID provided in the route.
 Note: Ensure the account associated with the API key you use has read accesss for the specified company.
 
 **Method and Path** - GET /Company/*companyID*/Report/*reportID*
+
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportID*
 
 **Route Parameters**   
 * *companyID* - ID value of the company that owns the report you want to retrieve
@@ -764,6 +777,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 
 **Method and Path** - POST /Company/*companyID*/Report/*reportMonth*
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*
+
 **Route Parameters**   
 * *companyID* - ID value of the company you want to add a monthly report to
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -812,6 +827,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 
 **Method and Path** - PUT /Company/*companyID*/Report/*reportMonth*
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*
+
 **Route Parameters**   
 * *companyID* - ID value of the company that owns the monthly report you want to submit
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -858,6 +875,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 
 **Method and Path** - DELETE /Company/*companyID*/Report/*reportMonth*
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*
+
 **Route Parameters**   
 * *companyID* - ID value of the company you want to retrieve reports for
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -900,6 +919,8 @@ Returns the hours worked for the specified operation category.
 Note: Ensure the account associated with the API key you use has read accesss for the specified company.
 
 **Method and Path** - GET /Company/*companyID*/Report/*reportMonth*/OpCategoy/*operationCategoryID*
+
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*/OpCategoy/*operationCategoryID*
 
 **Route Parameters**    
 * *companyID* - ID value of the company you want to retrieve reports for
@@ -954,6 +975,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 
 **Method and Path** - POST /Company/*companyID*/Report/*reportMonth*/OpCategory/*operationCategoryID*/*hoursWorked*
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*/OpCategory/*operationCategoryID*/*hoursWorked*
+
 **Route Parameters**    
 * *companyID* - ID value of the company you want to create or update the operation categories of
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -1002,6 +1025,8 @@ Returns the SIR specified by the sirID in the route.
 Note: Ensure the account associated with the API key you use has read accesss for the specified company.
 
 **Method and Path** - GET /Company/*companyID*/Report/SIR/*sirID*
+
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/SIR/*sirID*
 
 **Route Parameters**   
 * *companyID* - ID value of the company that the requested SIR belongs to
@@ -1052,6 +1077,8 @@ category is created.
 Note: Ensure the account associated with the API key you use has edit accesss for the specified company.
 
 **Method and Path** - POST /Company/*companyID*/Report/*reportMonth*/OpCategory/*operationCategoryID*/SIR/*incidentStatisticTypeID*
+
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*/OpCategory/*operationCategoryID*/SIR/*incidentStatisticTypeID*
 
 **Route Parameters**    
 * *companyID* - ID value of the company you want to create a new SIR for
@@ -1151,6 +1178,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 
 **Method and Path** - PUT /Company/*companyID*/Report/*reportMonth*/SIR/*sirID*
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*/SIR/*sirID*
+
 **Route Parameters**    
 * *companyID* - ID value of the company who owns the SIR you want to update
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -1237,6 +1266,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 
 **Method and Path** - DELETE /Company/*companyID*/Report/SIR/*sirID*
 
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/SIR/*sirID*
+
 **Route Parameters**   
 * *companyID* - ID value of the company who owns the SIR you want to delete
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
@@ -1279,6 +1310,8 @@ Returns all incident questions that must be answered for each SIR. Also provides
 each question.
 
 **Method and Path** - GET /Report/SIR/IncidentQuestions
+
+**URL** - https://isp.iadc.org/publicapi/Report/SIR/IncidentQuestions
 
 **Route Parameters**  - None
 
@@ -1349,6 +1382,8 @@ Returns all possible valid operation category values.
 
 **Method and Path** - GET /Report/OperationCategories
 
+**URL** - https://isp.iadc.org/publicapi/Report/OperationCategories
+
 **Route Parameters**  - None
 
 **Query Parameters** - None
@@ -1397,6 +1432,8 @@ Returns all possible valid operation category values.
 Returns all valid incident statistic type values. 
 
 **Method and Path** - GET /Report/IncidentStatisticTypes
+
+**URL** - https://isp.iadc.org/publicapi/Report/IncidentStatisticTypes
 
 **Route Parameters**  - None
 
