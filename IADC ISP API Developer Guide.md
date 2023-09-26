@@ -1157,7 +1157,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * *reportMonth* - Month of the monthly report in 'MMYYYY' format
     * Date must be a current or past month of the currently active year.
 * *sirID* - ID of the SIR you want to update
-    * Can be found using ~
+    * Can be found using the [Get All Monthly Reports](#get-all-monthly-reports) endpoint
 
 **Query Parameters** - None
 
@@ -1241,7 +1241,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * *companyID* - ID value of the company who owns the SIR you want to delete
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
 * *sirID* - ID of the SIR you want to delete
-    * Can be found using ~
+    * Can be found using the [Get All Monthly Reports](#get-all-monthly-reports) endpoint
 
 **Query Parameters** - None
 
