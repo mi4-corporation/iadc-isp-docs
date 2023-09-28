@@ -17,6 +17,8 @@ Use the links below to get started using the API.
   
 * For information on how to interpret JSON response bodies, read [JSON Data Object Structure].
 
+Last updated: 9/28/2023
+
 ## Table of Contents
 * [Introduction](#iadc-isp-public-api)
 * [Quick Start](#quick-start)
@@ -1487,3 +1489,5 @@ Returns all valid incident statistic type values.
 &emsp;[Return to Overview of Endpoints](#overview)
 
 ---
+
+Last updated: 9/28/2023
