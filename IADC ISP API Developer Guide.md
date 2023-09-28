@@ -703,7 +703,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 * 200: Ok
     * Body: JSON array of monthly reports
         * Read [Monthly Report](#monthly-report) for more information about JSON formatted monthly reports.
-        * For an example response body, visit the Swagger documentation.
+        <!--* For an example response body, visit the Swagger documentation.-->
 
 * 400: Bad Request - Missing/invalid values
     * No reports exist for this company.
@@ -747,7 +747,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 * 200: Ok
     * Body: JSON monthly report.
         * Read [Monthly Report](#monthly-report) for more information about JSON formatted monthly reports.
-        * For an example response body, visit the Swagger documentation.
+        <!-- * For an example response body, visit the Swagger documentation. -->
 
 * 400: Bad Request - Missing/invalid values
     * Failed to retrieve report.
@@ -762,9 +762,9 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 
 ---
 #### Add a New Monthly Report
-Adds a new monthly report according to the companyID and reportMonth.
+initializes a new monthly report according to the companyID and reportMonth.
 
-This endpoint generates a new monthly report that has some default operation categories but is largely blank.
+This endpoint generates a new monthly report outline that has some default operation categories but is largely blank.
 After creation, you can view the report with its default values by using the reportID from the body of the 
 reponse and the [Get a Specific Monthly Report](#get-specific-monthly-report) endpoint.
 
@@ -1049,7 +1049,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 * 200: Ok
     * Body: JSON formatted SIR
         * Read [Supplemental Incident Report](#supplemental-incident-report) for more information about JSON formatted SIRs.
-        * For an example response body, visit the Swagger documentation.
+       <!-- * For an example response body, visit the Swagger documentation. -->
 
 * 400: Bad Request - Missing/invalid values
     * No SIR exists with this ID.
@@ -1152,7 +1152,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * 201: Ok
     * Body: JSON formatted SIR
         * Read [Supplemental Incident Report](#supplemental-incident-report) for more information about JSON formatted SIRs.
-        * For an example response body, visit the Swagger documentation.
+       <!-- * For an example response body, visit the Swagger documentation.-->
 
 * 400: Bad Request - Missing/invalid values
     * Failed to create SIR.
@@ -1243,7 +1243,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * 201: Ok
     * Body: JSON formatted SIR
         * Read [Supplemental Incident Report](#supplemental-incident-report) for more information about JSON formatted SIRs.
-        * For an example response body, visit the Swagger documentation.
+       <!-- * For an example response body, visit the Swagger documentation.-->
 
 * 400: Bad Request - Missing/invalid values
     * Failed to update SIR.
