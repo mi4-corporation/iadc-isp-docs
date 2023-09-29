@@ -621,9 +621,9 @@ Where to go from here:
 #### Get All Companies
 Returns all companies that the API key owner is allowed to access, along with their roles for each company.
 
-**Method and Path** - GET /Companies
+**Method and Path** - GET /Company
 
-**URL** - https://isp.iadc.org/publicapi/Companies
+**URL** - https://isp.iadc.org/publicapi/Company
 
 **Route Parameters** - None
 
