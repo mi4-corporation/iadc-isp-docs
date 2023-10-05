@@ -15,9 +15,9 @@ Use the links below to get started using the API.
 * For information on authentication and API keys, read the [Authentication](#authentication) portion of 
   this documentation.
   
-* For information on how to interpret JSON response bodies, read [JSON Data Object Structure].
+* For information on how to interpret JSON response bodies, read [JSON Data Object Structure](#json-data-object-structure).
 
-Last updated: 9/28/2023
+Last updated: 10/05/2023
 
 ## Table of Contents
 * [Introduction](#iadc-isp-public-api)
@@ -1490,4 +1490,4 @@ Returns all valid incident statistic type values.
 
 ---
 
-Last updated: 9/28/2023
+Last updated: 10/05/2023
