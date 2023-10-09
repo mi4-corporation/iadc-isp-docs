@@ -1111,8 +1111,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
         * incidentDate - optional, the date that the incident occurred, must be the same month and year provided in
         the route
         * isSIF - optional, boolean value 
+        * SIFComments - optional, string containing comments about the SIF, if applicable 
         * rigNameNumber - optional, string 
-        * comments - optional, string containing any comments
         * answers - optional, array of objects representing incident questions and their answers
             * Can provide all required answers, a subset of the required answers, or no answers at all
             * Each answer should have these attributes:
@@ -1123,9 +1123,9 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * Example request body:    
 &emsp;{   
 &emsp;&emsp;"incidentDate": "2022-08-15",                
-&emsp;&emsp;"isSIF": "true",                               
-&emsp;&emsp;"rigNameNumber": "rigNameNumber string",     
-&emsp;&emsp;"comments": "comment string",                
+&emsp;&emsp;"isSIF": "true",          
+&emsp;&emsp;"SIFComments": "Optional comment about SIF status",                        
+&emsp;&emsp;"rigNameNumber": "rigNameNumber string",               
 &emsp;&emsp;"answers": [                                 
 &emsp;&emsp;&emsp;{                                          
 &emsp;&emsp;&emsp;  &emsp;"questionID": 2,                         
@@ -1202,9 +1202,9 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
     * List of possible attributes to include:
         * incidentDate - optional, the date that the incident occurred, must be the same month and year provided in
         the route
-        * isSIF - optional, boolean value 
+        * isSIF - optional, boolean value
+        * SIFComments - optional, string containing comments about the SIF, if applicable  
         * rigNameNumber - optional, string 
-        * comments - optional, string containing any comments
         * answers - optional, array of objects representing incident questions and their answers
             * Can provide all required answers, a subset of the required answers, or no answers at all
             * Each answer should have these attributes:
@@ -1215,9 +1215,9 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * Example request body:    
 &emsp;{   
 &emsp;&emsp;"incidentDate": "2022-08-15",                
-&emsp;&emsp;"isSIF": "true",                               
-&emsp;&emsp;"rigNameNumber": "rigNameNumber string",     
-&emsp;&emsp;"comments": "comment string",                
+&emsp;&emsp;"isSIF": "true",                 
+&emsp;&emsp;"SIFComments": "Optional comment about SIF status",               
+&emsp;&emsp;"rigNameNumber": "rigNameNumber string",                
 &emsp;&emsp;"answers": [                                 
 &emsp;&emsp;&emsp;{                                          
 &emsp;&emsp;&emsp;  &emsp;"questionID": 2,                         
