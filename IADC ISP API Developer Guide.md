@@ -15,9 +15,9 @@ Use the links below to get started using the API.
 * For information on authentication and API keys, read the [Authentication](#authentication) portion of 
   this documentation.
   
-* For information on how to interpret JSON response bodies, read [JSON Data Object Structure](#json-data-object-structure).
+* For information on how to interpret JSON response bodies, read [JSON Data Object Structure].
 
-Last updated: 10/05/2023
+Last updated: 10/11/2023
 
 ## Table of Contents
 * [Introduction](#iadc-isp-public-api)
@@ -159,9 +159,6 @@ Returns a list of all monthly reports for the specified company.
 [**Get a Specific Monthly Report**](#get-a-specific-monthly-report) - 
 Returns a single monthly report according to the reportID provided.
 
-[**Add a New Monthly Report**](#add-a-new-monthly-report) - 
-Adds a new monthly report according to the companyID and reportMonth.
-
 [**Submit an Existing Monthly Report**](#submit-an-existing-monthly-report) - 
 Validates report for submission and then changes status of report to submitted.
 
@@ -203,10 +200,6 @@ Returns all possible valid operation category values.
 
 [**Get Incident Statistic Types**](#get-incident-statistic-types) - 
 Returns all valid incident statistic type values. 
-
-<!--
-[**Get Countries**](#get-countries) - 
-Returns all possible valid country values.-->
 
 
 Where to go from here:
@@ -408,22 +401,16 @@ operation category for this monthly report.
 **JSON:**    
 &emsp;&emsp;{                                  
 &emsp;&emsp;&emsp;"companyReportID": 24814,    
-&emsp;&emsp;&emsp;"companyID": 786,            
+&emsp;&emsp;&emsp;"companyID": 123,            
 &emsp;&emsp;&emsp;"reportStatusID": 10,        
 &emsp;&emsp;&emsp;"reportStatus": "Draft",     
 &emsp;&emsp;&emsp;"reportYear": 2023,          
 &emsp;&emsp;&emsp;"reportMonth": 9,            
-&emsp;&emsp;&emsp;"comments": "",              
-&emsp;&emsp;&emsp;"createdByID": null,         
-&emsp;&emsp;&emsp;"createdByName": null,       
-&emsp;&emsp;&emsp;"createdTimeUTC": null,      
-&emsp;&emsp;&emsp;"lastUpdateByID": null,      
-&emsp;&emsp;&emsp;"lastUpdateByName": null,    
-&emsp;&emsp;&emsp;"lastUpdateTimeUTC": null,   
+&emsp;&emsp;&emsp;"comments": "Example comments",  
 &emsp;&emsp;&emsp;"operationCategories": [    
 &emsp;&emsp;&emsp;&emsp;&emsp;array of [Operation Category](#operation-category) objects    
 &emsp;&emsp;&emsp;]   
-&emsp;&emsp;}   
+&emsp;&emsp;}  
 
 
 &emsp;[Return to Table of Contents](#table-of-contents)   
@@ -511,7 +498,7 @@ or not.
     * incidentDayNotReported = true - incidentDate is set to the first of the month
     * incidentDayNotReported = false - incidentDate is set to the date of the incident
 * isSIF - Boolean representation of if the incident is a serious injury or fatality(SIF) or not.
-* sifComments - Optional comments about the SIF status.
+* SIFComments - Optional comments about the SIF status.
 * rigNameNumber - Optional string representation of the rigNameNumber.
 * answers - An array of [Answer](#answer) objects. Each object in the array represents an answer to one of 
 the SIR [Incident Questions](#incident-questions-and-answers). This array may have no answers, a subset of the 
@@ -525,7 +512,7 @@ required answers, or all of the required answers.
 &emsp;&emsp;&emsp;"incidentDayNotReported": false,                         
 &emsp;&emsp;&emsp;"incidentDate": "2023-08-15T00:00:00",                   
 &emsp;&emsp;&emsp;"isSIF": null,                                           
-&emsp;&emsp;&emsp;"sifComments": "Optional comment about SIF status",      
+&emsp;&emsp;&emsp;"SIFComments": "Optional comment about SIF status",      
 &emsp;&emsp;&emsp;"rigNameNumber": "Optional rigNameNumber string",        
 &emsp;&emsp;&emsp;"answers": [                                             
 &emsp;&emsp;&emsp;&emsp;&emsp;array of [Answer](#answer) objects                    
@@ -720,19 +707,19 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 
 ---
 #### Get a Specific Monthly Report
-Returns a single monthly report according to the reportID provided in the route.
+Returns a single monthly report according to the companyID and the reportMonth date provided in the route.
 
 Note: Ensure the account associated with the API key you use has read accesss for the specified company.
 
-**Method and Path** - GET /Company/*companyID*/Report/*reportID*
+**Method and Path** - GET /Company/*companyID*/Report/*reportMonth*
 
-**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportID*
+**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*
 
 **Route Parameters**   
 * *companyID* - ID value of the company that owns the report you want to retrieve
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportID* - ID of the monthly report you would like to access
-    * Can be found using the [Get All Monthly Reports](#get-all-monthly-reports) endpoint.
+* *reportMonth* - Month of the new monthly report in 'YYYYMM' format
+    * Date must be a current or past month of the currently active year.
 
 **Query Parameters** - None
 
@@ -763,60 +750,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 &emsp;[Return to Overview of Endpoints](#overview)
 
 ---
-#### Add a New Monthly Report
-initializes a new monthly report according to the companyID and reportMonth.
 
-This endpoint generates a new monthly report outline that has some default operation categories but is largely blank.
-After creation, you can view the report with its default values by using the reportID from the body of the 
-reponse and the [Get a Specific Monthly Report](#get-specific-monthly-report) endpoint.
-
-To add or update values, use the following endpoints:
-* [Create or Update an Operation Category](#create-or-update-an-operation-category) to update the hours worked for
-  a new or already existing operation category.
-* [Create New SIR](#create-new-sir) to add SIRs to your monthly report
-
-Note: Ensure the account associated with the API key you use has edit accesss for the specified company.
-
-**Method and Path** - POST /Company/*companyID*/Report/*reportMonth*
-
-**URL** - https://isp.iadc.org/publicapi/Company/*companyID*/Report/*reportMonth*
-
-**Route Parameters**   
-* *companyID* - ID value of the company you want to add a monthly report to
-    * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the new monthly report in 'MMYYYY' format
-    * Date must be a current or past month of the currently active year.
-
-**Query Parameters** - None
-
-**Body** - None
-
-**Headers**   
-* **X-Api-Key**    
-    * Include **X-Api-Key** header with your API key as the value.  
-    * This header is used to authenticate and authorize your request.
-    * For information on generating, retrieving, and using an API key, read the [Authentication](#authentication)
-    portion of this documentation.
-
-**Responses**
-
-* 200: Ok
-    * Body: *reportID* of the newly created monthly report
-    * Example response body:   
-    &emsp;12456
-
-* 400: Bad Request - Missing/invalid values
-    * Failed to create monthly report.
-    * Date provided is invalid.
-
-* 401: Unauthorized - Missing/invalid API key
-    * API key is missing, not a valid value, or associated with an account that does not have edit access 
-    for this company.
-
-&emsp;[Return to Table of Contents](#table-of-contents)   
-&emsp;[Return to Overview of Endpoints](#overview)
-
----
 #### Submit an Existing Monthly Report
 Validates report for submission and then changes status of report to submitted.
 
@@ -834,7 +768,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Route Parameters**   
 * *companyID* - ID value of the company that owns the monthly report you want to submit
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the new monthly report in 'MMYYYY' format
+* *reportMonth* - Month of the new monthly report in 'YYYYMM' format
     * Date must be a current or past month of the currently active year.
 
 **Query Parameters** - None
@@ -882,7 +816,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Route Parameters**   
 * *companyID* - ID value of the company you want to retrieve reports for
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the new monthly report in 'MMYYYY' format 
+* *reportMonth* - Month of the new monthly report in 'YYYYMM' format 
     * Date must be a current or past month of the currently active year.
 
 **Query Parameters** - None
@@ -927,7 +861,7 @@ Note: Ensure the account associated with the API key you use has read accesss fo
 **Route Parameters**    
 * *companyID* - ID value of the company you want to retrieve reports for
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the new monthly report in 'MMYYYY' format
+* *reportMonth* - Month of the new monthly report in 'YYYYMM' format
     * Date must be a current or past month of the currently active year.
 * *operationCategoryID* - ID corresponding to the requested operation category hours
     * Can be found using the [Get Operation Categories](#get-operation-categories) endpoint or in the 
@@ -973,6 +907,10 @@ category is created.
     * Note: This call does **NOT** *add* the provided hours worked value to the existing value. Instead, the 
     existing value is *overwritten* or *replaced* by the provided value.
 
+When a new operation category is created, it is automatically added to the default operation categories for the company. 
+When future monthly reports are created, the operation category will be automatically added with a zero hour value. To remove
+an operation category from the list of defaults for a comapny, use the portal.
+
 Note: Ensure the account associated with the API key you use has edit accesss for the specified company.
 
 **Method and Path** - POST /Company/*companyID*/Report/*reportMonth*/OpCategory/*operationCategoryID*/*hoursWorked*
@@ -982,7 +920,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Route Parameters**    
 * *companyID* - ID value of the company you want to create or update the operation categories of
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the monthly report in 'MMYYYY' format
+* *reportMonth* - Month of the monthly report in 'YYYYMM' format
     * Date must be a current or past month of the currently active year.
 * *operationCategoryID* - ID of the operation category you want to create or update
     * Can be found using the [Get Operation Categories](#get-operation-categories) endpoint or in the 
@@ -1075,6 +1013,10 @@ category is created.
 3. Next, a SIR is created with the specified incident statistic type.
 4. Finally, if a body is provided with the request, the SIR is updated to include the information provided in
     the body.
+
+When a new operation category is created, it is automatically added to the default operation categories for the company. 
+When future monthly reports are created, the operation category will be automatically added with a zero hour value. To remove
+an operation category from the list of defaults for a comapny, use the portal.
     
 Note: Ensure the account associated with the API key you use has edit accesss for the specified company.
 
@@ -1085,7 +1027,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Route Parameters**    
 * *companyID* - ID value of the company you want to create a new SIR for
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the monthly report in 'MMYYYY' format
+* *reportMonth* - Month of the monthly report in 'YYYYMM' format
     * Date must be a current or past month of the currently active year.
 * *operationCategoryID* - ID of the operation category you want to create or update
     * Can be found using the [Get Operation Categories](#get-operation-categories) endpoint or in the 
@@ -1123,9 +1065,9 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * Example request body:    
 &emsp;{   
 &emsp;&emsp;"incidentDate": "2022-08-15",                
-&emsp;&emsp;"isSIF": "true",          
-&emsp;&emsp;"SIFComments": "Optional comment about SIF status",                        
-&emsp;&emsp;"rigNameNumber": "rigNameNumber string",               
+&emsp;&emsp;"isSIF": "true",                              
+&emsp;&emsp;"SIFComments": "Optional comment about SIF status",       
+&emsp;&emsp;"rigNameNumber": "rigNameNumber string",              
 &emsp;&emsp;"answers": [                                 
 &emsp;&emsp;&emsp;{                                          
 &emsp;&emsp;&emsp;  &emsp;"questionID": 2,                         
@@ -1185,7 +1127,7 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 **Route Parameters**    
 * *companyID* - ID value of the company who owns the SIR you want to update
     * Can be found using the [Get All Companies](#get-all-companies) endpoint
-* *reportMonth* - Month of the monthly report in 'MMYYYY' format
+* *reportMonth* - Month of the monthly report in 'YYYYMM' format
     * Date must be a current or past month of the currently active year.
 * *sirID* - ID of the SIR you want to update
     * Can be found using the [Get All Monthly Reports](#get-all-monthly-reports) endpoint
@@ -1202,8 +1144,8 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
     * List of possible attributes to include:
         * incidentDate - optional, the date that the incident occurred, must be the same month and year provided in
         the route
-        * isSIF - optional, boolean value
-        * SIFComments - optional, string containing comments about the SIF, if applicable  
+        * isSIF - optional, boolean value 
+        * SIFComments - optional, string containing comments about the SIF, if applicable 
         * rigNameNumber - optional, string 
         * answers - optional, array of objects representing incident questions and their answers
             * Can provide all required answers, a subset of the required answers, or no answers at all
@@ -1215,9 +1157,9 @@ Note: Ensure the account associated with the API key you use has edit accesss fo
 * Example request body:    
 &emsp;{   
 &emsp;&emsp;"incidentDate": "2022-08-15",                
-&emsp;&emsp;"isSIF": "true",                 
-&emsp;&emsp;"SIFComments": "Optional comment about SIF status",               
-&emsp;&emsp;"rigNameNumber": "rigNameNumber string",                
+&emsp;&emsp;"isSIF": "true",                                  
+&emsp;&emsp;"SIFComments": "Optional comment about SIF status",   
+&emsp;&emsp;"rigNameNumber": "rigNameNumber string",                 
 &emsp;&emsp;"answers": [                                 
 &emsp;&emsp;&emsp;{                                          
 &emsp;&emsp;&emsp;  &emsp;"questionID": 2,                         
@@ -1490,4 +1432,4 @@ Returns all valid incident statistic type values.
 
 ---
 
-Last updated: 10/05/2023
+Last updated: 10/11/2023
